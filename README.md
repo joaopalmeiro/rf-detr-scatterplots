@@ -51,3 +51,6 @@
   - `/** @jsx jsx */`: JSX pragma. It is a hint to the compiler (Babel) on how to compile a file. Must be combined with `import { jsx } from 'theme-ui'` (for the same reason you have to import React in JSX files).
   - Alternative: [Base Web](https://baseweb.design/) ([repo](https://github.com/uber/baseweb)).
 - In Next.js, we can think of each page as its own application (code splitting).
+- [next-react-svg](https://www.npmjs.com/package/next-react-svg) plugin: to transform SVG files to components.
+- [next-compose-plugins](https://www.npmjs.com/package/next-compose-plugins) plugin (`yarn add next-compose-plugins`).
+- `yarn add next-env dotenv-load --dev`.
