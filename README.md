@@ -35,3 +35,8 @@
 - `rsync -ahP --exclude 'node_modules' canvas-react-konva/* /Users/joao.palmeiro/Documents/konva-heatmap` (more info [here](https://blog.duklabs.com/using-rsync-on-mac-to-copy-files/) and [here](https://linuxhint.com/rsync_copy_files/)). The first path is the source, the second one is the destination.
 - [auto-changelog](https://github.com/CookPete/auto-changelog) ([npm](https://www.npmjs.com/package/auto-changelog)).
 - [Fontsource](https://fontsource.org/) (individual fonts as npm packages).
+- [Magic](https://magic.link/) (magic link login/passwordless auth):
+  - [How to Implement Auth in Next.js with Magic](https://magic.link/posts/magic-link-nextjs) ([repo](https://github.com/magiclabs/example-nextjs)).
+- [Programmatic routing](https://hendrixer.github.io/nextjs-course/navigation#programmatic-routing):
+  - The `push` method works like `href` on the `Link` component.
+  - `const router = useRouter()` + `<button onClick={e => router.push('/')}>Go Home</button>`, for example.
