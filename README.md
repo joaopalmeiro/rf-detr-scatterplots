@@ -47,3 +47,7 @@
   - `yarn add theme-ui @theme-ui/presets`.
   - [@theme-ui/presets](https://theme-ui.com/packages/presets/) ([demo](https://theme-ui.com/demo)).
   - [Sketchy Theme UI Preset](https://themeui-sketchy.netlify.app/).
+  - The `styles` object is primarily for MDX.
+  - `/** @jsx jsx */`: JSX pragma. It is a hint to the compiler (Babel) on how to compile a file. Must be combined with `import { jsx } from 'theme-ui'` (for the same reason you have to import React in JSX files).
+  - Alternative: [Base Web](https://baseweb.design/) ([repo](https://github.com/uber/baseweb)).
+- In Next.js, we can think of each page as its own application (code splitting).
