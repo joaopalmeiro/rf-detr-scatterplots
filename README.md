@@ -27,3 +27,10 @@
   - To create new projects from any `create-*` packages.
   - `yarn create next-app` vs. `npx create-next-app`.
 - `yarn add next react react-dom`.
+- [Catch all routes](https://nextjs.org/docs/routing/dynamic-routes#catch-all-routes):
+  - Dynamic routes can be extended to catch all paths by adding 3 dots inside the brackets (`[...param].jsx`).
+  - Think of a glob.
+  - [Optional catch all routes](https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes): To include the parent path (`docs/[[...param]].jsx`). This path will correspond to an empty object (`{}`).
+- `Link` component (`next/link`): For client-side routing. To link to another website, use the `<a>` tag instead.
+- `rsync -ahP --exclude 'node_modules' canvas-react-konva/* /Users/joao.palmeiro/Documents/konva-heatmap` (more info [here](https://blog.duklabs.com/using-rsync-on-mac-to-copy-files/) and [here](https://linuxhint.com/rsync_copy_files/)). The first path is the source, the second one is the destination.
+- [auto-changelog](https://github.com/CookPete/auto-changelog) ([npm](https://www.npmjs.com/package/auto-changelog)).
