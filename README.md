@@ -39,4 +39,11 @@
   - [How to Implement Auth in Next.js with Magic](https://magic.link/posts/magic-link-nextjs) ([repo](https://github.com/magiclabs/example-nextjs)).
 - [Programmatic routing](https://hendrixer.github.io/nextjs-course/navigation#programmatic-routing):
   - The `push` method works like `href` on the `Link` component.
+  - To use on buttons, for example.
   - `const router = useRouter()` + `<button onClick={e => router.push('/')}>Go Home</button>`, for example.
+- [To apply CSS globally](https://hendrixer.github.io/nextjs-course/styling), you need to create the `pages/_app.jsx` file, the application's entry point, and import the relevant files. If you don't need to apply CSS globally, you don't need to create this file.
+- Next.js supports [CSS Modules](https://github.com/css-modules/css-modules) (`*.module.css` files).
+- [Theme UI](https://theme-ui.com/):
+  - `yarn add theme-ui @theme-ui/presets`.
+  - [@theme-ui/presets](https://theme-ui.com/packages/presets/) ([demo](https://theme-ui.com/demo)).
+  - [Sketchy Theme UI Preset](https://themeui-sketchy.netlify.app/).
