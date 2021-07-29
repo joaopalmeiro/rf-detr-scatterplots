@@ -34,3 +34,4 @@
 - `Link` component (`next/link`): For client-side routing. To link to another website, use the `<a>` tag instead.
 - `rsync -ahP --exclude 'node_modules' canvas-react-konva/* /Users/joao.palmeiro/Documents/konva-heatmap` (more info [here](https://blog.duklabs.com/using-rsync-on-mac-to-copy-files/) and [here](https://linuxhint.com/rsync_copy_files/)). The first path is the source, the second one is the destination.
 - [auto-changelog](https://github.com/CookPete/auto-changelog) ([npm](https://www.npmjs.com/package/auto-changelog)).
+- [Fontsource](https://fontsource.org/) (individual fonts as npm packages).
