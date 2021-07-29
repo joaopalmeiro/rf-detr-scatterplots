@@ -6,6 +6,11 @@
   - [Website](https://hendrixer.github.io/nextjs-course/).
   - [Repo](https://github.com/Hendrixer/nextjs-course-app).
 
+## Development
+
+- `yarn install`.
+- `yarn dev`.
+
 ## Notes
 
 - Node.js version managers:
@@ -18,3 +23,7 @@
 - [When to use Next.js](https://hendrixer.github.io/nextjs-course/what-is-nextjs):
   - All you need is a single-page application (SPA)? Use React/CRA.
   - Do you need a static website, like a blog, which is also a SPA (or something more sophisticated, with SSR, for example)? Use Next.js.
+- [`yarn create`](https://classic.yarnpkg.com/en/docs/cli/create/):
+  - To create new projects from any `create-*` packages.
+  - `yarn create next-app` vs. `npx create-next-app`.
+- `yarn add next react react-dom`.
