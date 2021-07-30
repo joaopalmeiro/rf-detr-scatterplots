@@ -66,6 +66,7 @@
   - Client-side data fetching packages:
     - [SWR](https://swr.vercel.app/) (React hooks for data fetching).
     - [React Query](https://react-query.tanstack.com/) (and [React Charts](https://react-charts.tanstack.com/)).
+  - To fetch data on components (not pages), use client-side data fetching.
   - Next.js injects `fetch` into the environment.
   - To fetch data ahead of time, there are three options (they are for pre-rendered pages only):
     - `getStaticProps`:
@@ -89,3 +90,4 @@
   - Use `.env.local` to load environment variables.
   - Expose environment variables to the browser by prefixing with `NEXT_PUBLIC_`.
 - [Slapdash](https://slapdash.com/).
+- Rule of thumb: Any non-user generated content should be statically generated.
