@@ -56,3 +56,27 @@
 - `yarn add next-env dotenv-load --dev`.
 - API routes:
   - Create an `api` folder inside the `pages` folder.
+- [HTTPie](https://httpie.io/) (CLI for API testing):
+  - `brew install httpie`.
+  - `http --version`.
+  - `http :3000/api` (`:3000` -> `http://localhost:3000/`).
+  - [next-connect](https://www.npmjs.com/package/next-connect) package.
+  - [Insomnia](https://insomnia.rest/) and [Postman](https://www.postman.com/) (API clients).
+- Fetching data:
+  - [SWR](https://swr.vercel.app/) (React hooks for data fetching).
+  - [React Query](https://react-query.tanstack.com/) (and [React Charts](https://react-charts.tanstack.com/)).
+  - Next.js injects `fetch` into the environment.
+  - To fetch data ahead of time, there are three options (they are for pre-rendered pages only):
+    - `getStaticProps`:
+      - To fetch data at build time.
+      - By having your page exporting `getStaticProps`, Next.js will run this function at build time. The returned props will be passed to the exported page. The results of this function are saved into a JSON file and passed as props to the client's component at runtime.
+    - `getStaticPaths`:
+      - Specify dynamic routes to pre-render pages based on data.
+      - To get all the paths to posts from an API or file system, for example.
+      - If a page has a dynamic path (`[id].jsx`, for example) and uses `getStaticProps`, it must also use `getStaticPaths`.
+      - Use `fallback: true` if you don't want to statically pre-render all pages at once, and instead opt in to render some later at runtime via SSR.
+    - `getServerSideProps`.
+- [Sheety](https://sheety.co/) (Google Spreadsheets as APIs).
+- [Environment Variables](https://nextjs.org/docs/basic-features/environment-variables):
+  - Use `.env.local` to load environment variables.
+  - Expose environment variables to the browser by prefixing with `NEXT_PUBLIC_`.
