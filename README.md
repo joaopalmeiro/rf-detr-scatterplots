@@ -63,8 +63,9 @@
   - [next-connect](https://www.npmjs.com/package/next-connect) package.
   - [Insomnia](https://insomnia.rest/) and [Postman](https://www.postman.com/) (API clients).
 - Fetching data:
-  - [SWR](https://swr.vercel.app/) (React hooks for data fetching).
-  - [React Query](https://react-query.tanstack.com/) (and [React Charts](https://react-charts.tanstack.com/)).
+  - Client-side data fetching packages:
+    - [SWR](https://swr.vercel.app/) (React hooks for data fetching).
+    - [React Query](https://react-query.tanstack.com/) (and [React Charts](https://react-charts.tanstack.com/)).
   - Next.js injects `fetch` into the environment.
   - To fetch data ahead of time, there are three options (they are for pre-rendered pages only):
     - `getStaticProps`:
@@ -75,7 +76,9 @@
       - To get all the paths to posts from an API or file system, for example.
       - If a page has a dynamic path (`[id].jsx`, for example) and uses `getStaticProps`, it must also use `getStaticPaths`.
       - Use `fallback: true` if you don't want to statically pre-render all pages at once, and instead opt in to render some later at runtime via SSR.
-    - `getServerSideProps`.
+    - `getServerSideProps`:
+      - By having your page exporting `getServerSideProps`, Next.js will pre-render a page on each request using the data returned by `getServerSideProps`.
+    - More info [here](https://nextjs.org/docs/basic-features/data-fetching).
 - [Sheety](https://sheety.co/) (Google Spreadsheets as APIs).
 - [Environment Variables](https://nextjs.org/docs/basic-features/environment-variables):
   - Use `.env.local` to load environment variables.
