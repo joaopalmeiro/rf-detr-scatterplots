@@ -71,15 +71,21 @@
     - `getStaticProps`:
       - To fetch data at build time.
       - By having your page exporting `getStaticProps`, Next.js will run this function at build time. The returned props will be passed to the exported page. The results of this function are saved into a JSON file and passed as props to the client's component at runtime.
+      - Build time + SSR.
     - `getStaticPaths`:
       - Specify dynamic routes to pre-render pages based on data.
       - To get all the paths to posts from an API or file system, for example.
       - If a page has a dynamic path (`[id].jsx`, for example) and uses `getStaticProps`, it must also use `getStaticPaths`.
       - Use `fallback: true` if you don't want to statically pre-render all pages at once, and instead opt in to render some later at runtime via SSR.
+      - Build time + SSR.
     - `getServerSideProps`:
       - By having your page exporting `getServerSideProps`, Next.js will pre-render a page on each request using the data returned by `getServerSideProps`.
+      - Do you need data at runtime but don't need SSR? Use client-side data fetching.
+      - Do you need data at runtime but do need SSR? Use `getServerSideProps`.
+      - Runtime + SSR.
     - More info [here](https://nextjs.org/docs/basic-features/data-fetching).
 - [Sheety](https://sheety.co/) (Google Spreadsheets as APIs).
 - [Environment Variables](https://nextjs.org/docs/basic-features/environment-variables):
   - Use `.env.local` to load environment variables.
   - Expose environment variables to the browser by prefixing with `NEXT_PUBLIC_`.
+- [Slapdash](https://slapdash.com/).
