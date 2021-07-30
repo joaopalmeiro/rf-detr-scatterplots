@@ -54,3 +54,5 @@
 - [next-react-svg](https://www.npmjs.com/package/next-react-svg) plugin: to transform SVG files to components.
 - [next-compose-plugins](https://www.npmjs.com/package/next-compose-plugins) plugin (`yarn add next-compose-plugins`).
 - `yarn add next-env dotenv-load --dev`.
+- API routes:
+  - Create an `api` folder inside the `pages` folder.
