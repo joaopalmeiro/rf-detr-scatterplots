@@ -98,3 +98,10 @@
 - [#1 Intro & Setup](https://youtu.be/IM7a6BxNof8):
   - [Netlify Identity](https://docs.netlify.com/visitor-access/identity/) documentation.
   - [Netlify Functions](https://docs.netlify.com/functions/overview/) documentation.
+- [#2 - Installing Identity & Deploying](https://youtu.be/Pp-wnupZAH4):
+  - [netlify-identity-widget](https://www.npmjs.com/package/netlify-identity-widget). Install and deploy the website right after and before using the package. Enable _Identity_ in Netlify interface.
+  - [Next.js on Netlify](https://docs.netlify.com/configure-builds/common-configurations/next-js/) documentation. Netlify automatically installs the [Essential Next.js build plugin](https://github.com/netlify/netlify-plugin-nextjs).
+- [#3 - Creating an Auth Context](https://youtu.be/WJ8qEkmK0rE):
+  - React Context for state management in Next.js.
+  - `authReady`: To keep track of when we establish a connection to Netlify because when we load the application, it can take a while to identify whether a user is logged in or not while communicating with Netlify. So until we establish the connection and figure this out, it's going to be `false`.
+  - It is possible to have registrations by invitation only. More info [here](https://docs.netlify.com/visitor-access/identity/registration-login/).
