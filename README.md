@@ -105,3 +105,6 @@
   - React Context for state management in Next.js.
   - `authReady`: To keep track of when we establish a connection to Netlify because when we load the application, it can take a while to identify whether a user is logged in or not while communicating with Netlify. So until we establish the connection and figure this out, it's going to be `false`.
   - It is possible to have registrations by invitation only. More info [here](https://docs.netlify.com/visitor-access/identity/registration-login/).
+- [#4 - Signing Up & Logging In](https://youtu.be/klD6RTbz5ww).
+- [#5 - Logging Out](https://youtu.be/Xfr7LIef-q0):
+  - Return a function in `useEffect` for cleanup purposes. [React performs the cleanup when the component unmounts](https://reactjs.org/docs/hooks-effect.html#example-using-hooks-1).
