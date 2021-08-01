@@ -92,3 +92,9 @@
 - [Slapdash](https://slapdash.com/).
 - Rule of thumb: Any non-user generated content should be statically generated.
 - Next.js supports dynamic imports (`import dynamic from 'next/dynamic'`) that, when used with components, will opt out of SSR. More info [here](https://hendrixer.github.io/nextjs-course/working-with-ssr). It is possible to add/associate a [loading component](https://nextjs.org/docs/advanced-features/dynamic-import#with-custom-loading-component). In this way, it is possible to have a page only partially pre-rendered.
+
+### Next.js & Netlify Identity (auth) Tutorial
+
+- [#1 Intro & Setup](https://youtu.be/IM7a6BxNof8):
+  - [Netlify Identity](https://docs.netlify.com/visitor-access/identity/) documentation.
+  - [Netlify Functions](https://docs.netlify.com/functions/overview/) documentation.
