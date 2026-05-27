@@ -1,10 +1,12 @@
 from pathlib import Path
 
 INPUT = Path("input")
-OUTPUT = Path("output")
 DATASETS = INPUT / "datasets"
 IMAGES = INPUT / "images"
 METADATA = INPUT / "metadata"
+
+OUTPUT = Path("output")
+FINAL_DATASET = OUTPUT / "dataset"
 
 RANDOM_STATE = 42
 
@@ -19,3 +21,6 @@ DEFAULT_PADDING = 5
 
 # https://vega.github.io/vega-lite/docs/point.html
 DEFAULT_POINT_SIZE = 30
+
+# https://vega.github.io/vega-lite/docs/size.html#autosize
+DEFAULT_AUTO_SIZE = {"type": "fit", "contains": "padding"}

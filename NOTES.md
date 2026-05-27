@@ -4,6 +4,11 @@
 - Node.js version managers:
   - [nvm](https://github.com/nvm-sh/nvm).
   - [n](https://github.com/tj/n).
+- Frontend Masters and Scott Moss' [Introduction to Next.js](https://frontendmasters.com/courses/next-js/) course.
+  - [Website](https://hendrixer.github.io/nextjs-course/).
+  - [Repo](https://github.com/Hendrixer/nextjs-course-app).
+- `yarn install`.
+- `yarn dev`.
 - Next.js, being a _full-stack framework_, uses React as its view library.
 - React can be seen as a **view library** because, alone, it's not enough to build a modern application — routing, a build system, etc. is needed.
 - [Create React App](https://create-react-app.dev/) (CRA): React + build system.
@@ -97,6 +102,9 @@
     - "VALID SET 186 Images"
     - "TEST SET 169 Images"
     - "Resize: Stretch to 640x640"
+- https://www.youtube.com/watch?v=xJaMTo2YgO8
+  - https://www.conductor.build/
+  - https://www.conductor.build/cloud
 
 ## Next.js & Netlify Identity (auth) Tutorial
 
@@ -114,16 +122,15 @@
 - [#5 - Logging Out](https://youtu.be/Xfr7LIef-q0):
   - Return a function in `useEffect` for cleanup purposes. [React performs the cleanup when the component unmounts](https://reactjs.org/docs/hooks-effect.html#example-using-hooks-1).
 
-## References
+## Commands
 
-- Frontend Masters and Scott Moss' [Introduction to Next.js](https://frontendmasters.com/courses/next-js/) course.
-  - [Website](https://hendrixer.github.io/nextjs-course/).
-  - [Repo](https://github.com/Hendrixer/nextjs-course-app).
+```bash
+mkdir -p ~/Documents/kiro-rf-detr-scatterplots && rsync -a --delete --exclude={'.git','.DS_Store','NOTES.md'} ~/Documents/GitHub/rf-detr-scatterplots/ ~/Documents/kiro-rf-detr-scatterplots
+```
 
-## Development
-
-- `yarn install`.
-- `yarn dev`.
+```bash
+kiro ~/Documents/kiro-rf-detr-scatterplots
+```
 
 ## Snippets
 

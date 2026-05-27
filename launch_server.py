@@ -4,7 +4,15 @@ from string import Template
 import pandas as pd
 from fasthtml.common import Div, Main, Script, fast_app, serve
 
-from constants import DATASETS, DEFAULT_HEIGHT, DEFAULT_OPACITY, DEFAULT_PADDING, DEFAULT_POINT_SIZE, DEFAULT_WIDTH
+from constants import (
+    DATASETS,
+    DEFAULT_AUTO_SIZE,
+    DEFAULT_HEIGHT,
+    DEFAULT_OPACITY,
+    DEFAULT_PADDING,
+    DEFAULT_POINT_SIZE,
+    DEFAULT_WIDTH,
+)
 
 VL_SCRIPT = Template("""
 vegaEmbed("#chart", $vl_spec).then((result) => {
@@ -43,7 +51,10 @@ vegaEmbed("#chart", $vl_spec).then((result) => {
 def generate_default_spec(dataset: pd.DataFrame) -> str:
     return json.dumps(
         {
+            "width": DEFAULT_WIDTH,
+            "height": DEFAULT_HEIGHT,
             "padding": DEFAULT_PADDING,
+            "autosize": DEFAULT_AUTO_SIZE,
             "data": {"values": dataset.to_dict(orient="records")},
             "mark": {
                 "type": "point",
@@ -64,12 +75,6 @@ def generate_default_spec(dataset: pd.DataFrame) -> str:
                     "axis": {"title": None},
                     "scale": {"zero": False},
                 },
-            },
-            "config": {
-                "view": {
-                    "continuousWidth": DEFAULT_WIDTH,
-                    "continuousHeight": DEFAULT_HEIGHT,
-                }
             },
         },
         ensure_ascii=False,

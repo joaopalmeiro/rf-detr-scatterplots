@@ -37,6 +37,10 @@ uv run python annotate_datasets.py
 ```
 
 ```bash
+uv run python convert_coco.py
+```
+
+```bash
 uv run mypy
 ```
 
