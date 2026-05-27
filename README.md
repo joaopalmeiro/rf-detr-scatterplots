@@ -25,6 +25,18 @@ uv run python generate_datasets.py
 ```
 
 ```bash
+uv run playwright install
+```
+
+```bash
+uv run python launch_server.py
+```
+
+```bash
+uv run python annotate_datasets.py
+```
+
+```bash
 uv run mypy
 ```
 

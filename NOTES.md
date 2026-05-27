@@ -80,6 +80,15 @@
 - [Slapdash](https://slapdash.com/).
 - Rule of thumb: Any non-user generated content should be statically generated.
 - Next.js supports dynamic imports (`import dynamic from 'next/dynamic'`) that, when used with components, will opt out of SSR. More info [here](https://hendrixer.github.io/nextjs-course/working-with-ssr). It is possible to add/associate a [loading component](https://nextjs.org/docs/advanced-features/dynamic-import#with-custom-loading-component). In this way, it is possible to have a page only partially pre-rendered.
+- https://github.com/browserbase/quickstart-playwright-python-parallelism
+- https://blog.adarshd.dev/posts/thread-local-storage-in-python/
+  - "Threads share the memory space of their parent process. This will allow us to seamlessly access and share variables, data structures, etc., across threads. But this comes with its own challenges. There may be scenarios where we need to isolate variables and might need to store data specific to each thread. Thread local storage can be leveraged in this case."
+  - "We can use `local()` found in the threading module to define thread-local variables."
+- https://playwright.dev/python/docs/library#interactive-mode-repl: `playwright = sync_playwright().start()`
+- https://playwright.dev/python/docs/library#threading:
+  - "Playwright's API is not thread-safe. If you are using Playwright in a multi-threaded environment, you should create a playwright instance per thread."
+  - https://github.com/microsoft/playwright-python/issues/623
+  - https://github.com/microsoft/playwright-python/issues/470
 
 ## Next.js & Netlify Identity (auth) Tutorial
 

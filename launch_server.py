@@ -1,10 +1,10 @@
+import json
 from string import Template
 
 import pandas as pd
-from fastcore.xml import FT
 from fasthtml.common import Div, Main, Script, fast_app, serve
 
-from constants import DATASETS
+from constants import DATASETS, DEFAULT_HEIGHT, DEFAULT_OPACITY, DEFAULT_PADDING, DEFAULT_POINT_SIZE, DEFAULT_WIDTH
 
 VL_SCRIPT = Template("""
 vegaEmbed("#chart", $vl_spec).then((result) => {
@@ -40,6 +40,42 @@ vegaEmbed("#chart", $vl_spec).then((result) => {
 """)
 
 
+def generate_default_spec(dataset: pd.DataFrame) -> str:
+    return json.dumps(
+        {
+            "padding": DEFAULT_PADDING,
+            "data": {"values": dataset.to_dict(orient="records")},
+            "mark": {
+                "type": "point",
+                "filled": True,
+                "size": DEFAULT_POINT_SIZE,
+                "opacity": DEFAULT_OPACITY,
+            },
+            "encoding": {
+                "x": {
+                    "field": "x",
+                    "type": "quantitative",
+                    "axis": {"title": None},
+                    "scale": {"zero": False},
+                },
+                "y": {
+                    "field": "y",
+                    "type": "quantitative",
+                    "axis": {"title": None},
+                    "scale": {"zero": False},
+                },
+            },
+            "config": {
+                "view": {
+                    "continuousWidth": DEFAULT_WIDTH,
+                    "continuousHeight": DEFAULT_HEIGHT,
+                }
+            },
+        },
+        ensure_ascii=False,
+    )
+
+
 def compute_cluster_bounding_boxes(dataset: pd.DataFrame) -> str:
     bounding_boxes = dataset.groupby("cluster", as_index=False).agg(
         x_min=("x", "min"), x_max=("x", "max"), y_min=("y", "min"), y_max=("y", "max")
@@ -48,7 +84,7 @@ def compute_cluster_bounding_boxes(dataset: pd.DataFrame) -> str:
     return bounding_boxes.to_json(orient="records")
 
 
-app, _ = fast_app(
+app, rt = fast_app(
     pico=False,
     live=False,
     hdrs=(
@@ -59,14 +95,13 @@ app, _ = fast_app(
 )
 
 
-@app.get("/{dataset_id}/{chart_design}/{scale_factor}")
-def home(dataset_id: str, chart_design: str, scale_factor: float) -> FT:
+@rt("/{dataset_id}")
+def home(dataset_id: str):
     dataset = pd.read_json(DATASETS / f"{dataset_id}.json")
 
     bounding_boxes = compute_cluster_bounding_boxes(dataset)
 
-    # TODO
-    vl_spec = CHART_DESIGNS[chart_design](dataset)
+    vl_spec = generate_default_spec(dataset)
 
     return Main(
         Div(id="chart"),
@@ -74,7 +109,7 @@ def home(dataset_id: str, chart_design: str, scale_factor: float) -> FT:
             VL_SCRIPT.safe_substitute(
                 vl_spec=vl_spec,
                 bounding_boxes=bounding_boxes,
-                scale_factor=scale_factor,
+                scale_factor=1,
                 padding=DEFAULT_PADDING,
             )
         ),
