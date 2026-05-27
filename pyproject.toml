@@ -2,4 +2,12 @@
 name = "rf-detr-scatterplots"
 version = "0.0.0"
 requires-python = ">=3.10.14"
-dependencies = ["mypy==1.20.1", "ruff==0.15.11"]
+dependencies = [
+    "gaveta==0.6.0",
+    "loguru==0.7.3",
+    "mypy==1.20.1",
+    "pandas-stubs==2.2.3.250527",
+    "pandas==2.2.3",
+    "ruff==0.15.11",
+    "scikit-learn==1.6.1",
+]

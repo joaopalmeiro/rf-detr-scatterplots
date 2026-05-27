@@ -21,7 +21,7 @@ uv audit --verbose
 ```
 
 ```bash
-uv run python 01.py
+uv run python generate_datasets.py
 ```
 
 ```bash
