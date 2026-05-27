@@ -89,6 +89,14 @@
   - "Playwright's API is not thread-safe. If you are using Playwright in a multi-threaded environment, you should create a playwright instance per thread."
   - https://github.com/microsoft/playwright-python/issues/623
   - https://github.com/microsoft/playwright-python/issues/470
+- https://rfdetr.roboflow.com/latest/learn/train/
+  - https://rfdetr.roboflow.com/latest/learn/train/dataset-formats/#coco-format
+  - https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-finetune-rf-detr-on-detection-dataset.ipynb
+  - https://universe.roboflow.com/roboflow-jvuqo/basketball-player-detection-2/dataset/13
+    - "TRAIN SET 1043 Images"
+    - "VALID SET 186 Images"
+    - "TEST SET 169 Images"
+    - "Resize: Stretch to 640x640"
 
 ## Next.js & Netlify Identity (auth) Tutorial
 
