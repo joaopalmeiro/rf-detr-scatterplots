@@ -11,7 +11,7 @@ from utils import ensure_clean_dir
 def generate_gaussian_blobs() -> None:
     prefix = "gaussian_blobs"
 
-    min_n_clusters = 1
+    min_n_clusters = 2
     max_n_clusters = 10
 
     for n_samples in [100, 500, 1_000, 2_000]:
