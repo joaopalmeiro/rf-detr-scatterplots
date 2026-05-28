@@ -67,3 +67,7 @@ HF_TOKEN="op://Development/Hugging Face/HF_TOKEN" op run -- uv run hf buckets cr
 ```bash
 HF_TOKEN="op://Development/Hugging Face/HF_TOKEN" op run -- uv run hf buckets sync ./output/dataset hf://buckets/joaompalmeiro/scatterplots --delete
 ```
+
+```bash
+HF_TOKEN="op://Development/Hugging Face/HF_TOKEN" op run -- uv run hf buckets create checkpoints
+```

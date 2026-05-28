@@ -12,6 +12,8 @@ def evaluate_medium_model() -> None:
     ensure_clean_dir(RESULTS / "medium")
 
     model = RFDETRMedium()
+    model.optimize_for_inference()
+
     box_annotator = sv.BoxAnnotator()
 
     for image in TEST.glob("*.jpg"):

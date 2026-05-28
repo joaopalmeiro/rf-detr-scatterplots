@@ -97,6 +97,7 @@
 - https://rfdetr.roboflow.com/latest/learn/train/
   - https://rfdetr.roboflow.com/latest/learn/train/dataset-formats/#coco-format
   - https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-finetune-rf-detr-on-detection-dataset.ipynb
+    - "We load the best-performing model from the `checkpoint_best_total.pth` file (...)"
   - https://universe.roboflow.com/roboflow-jvuqo/basketball-player-detection-2/dataset/13
     - "TRAIN SET 1043 Images"
     - "VALID SET 186 Images"
@@ -131,6 +132,12 @@
 - [#5 - Logging Out](https://youtu.be/Xfr7LIef-q0):
   - Return a function in `useEffect` for cleanup purposes. [React performs the cleanup when the component unmounts](https://reactjs.org/docs/hooks-effect.html#example-using-hooks-1).
 - `shutil.move(IMAGES / file_name, subset / file_name)`
+- https://github.com/roboflow/rf-detr/issues/286
+- https://huggingface.co/docs/hub/jobs
+- https://huggingface.co/docs/hub/jobs-pricing: "Jobs are available to any user or organization with a positive credit balance."
+- https://huggingface.co/Roboflow/rf-detr-medium
+- https://github.com/roboflow/rf-detr/blob/1.6.5.post2/src/rfdetr/assets/model_weights.py#L227
+- https://huggingface.co/docs/huggingface_hub/en/guides/jobs#uv-scripts-experimental
 
 ## Commands
 
@@ -148,6 +155,14 @@ uv run hf buckets --help
 
 ```bash
 open input/images
+```
+
+```bash
+uv run hf jobs ps -a
+```
+
+```bash
+uv run hf jobs stats
 ```
 
 ## Snippets
@@ -207,4 +222,48 @@ const theme = {
 // console.log(theme);
 
 export default theme;
+```
+
+```python
+import numpy as np
+import supervision as sv
+
+from PIL import Image
+
+from rfdetr import RFDETRMedium
+from rfdetr.util.coco_classes import COCO_CLASSES
+
+image = Image.open("dog-2.jpeg")
+
+model = RFDETRMedium(resolution=640)
+model.optimize_for_inference()
+
+detections = model.predict(image, threshold=0.5)
+
+color = sv.ColorPalette.from_hex([
+    "#ffff00", "#ff9b00", "#ff8080", "#ff66b2", "#ff66ff", "#b266ff",
+    "#9999ff", "#3399ff", "#66ffff", "#33ff99", "#66ff66", "#99ff00"
+])
+text_scale = sv.calculate_optimal_text_scale(resolution_wh=image.size)
+thickness = sv.calculate_optimal_line_thickness(resolution_wh=image.size)
+
+bbox_annotator = sv.BoxAnnotator(color=color, thickness=thickness)
+label_annotator = sv.LabelAnnotator(
+    color=color,
+    text_color=sv.Color.BLACK,
+    text_scale=text_scale,
+    smart_position=True
+)
+
+labels = [
+    f"{COCO_CLASSES[class_id]} {confidence:.2f}"
+    for class_id, confidence
+    in zip(detections.class_id, detections.confidence)
+]
+
+annotated_image = image.copy()
+annotated_image = bbox_annotator.annotate(annotated_image, detections)
+annotated_image = label_annotator.annotate(annotated_image, detections, labels)
+annotated_image.thumbnail((800, 800))
+annotated_image
 ```
