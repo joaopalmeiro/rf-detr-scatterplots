@@ -105,6 +105,8 @@
 - https://www.youtube.com/watch?v=xJaMTo2YgO8
   - https://www.conductor.build/
   - https://www.conductor.build/cloud
+- https://docs.python.org/3/library/shutil.html#shutil.move
+- https://github.com/roboflow/supervision
 
 ## Next.js & Netlify Identity (auth) Tutorial
 

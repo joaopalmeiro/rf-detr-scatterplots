@@ -22,19 +22,15 @@ def handle_msg(msg: ConsoleMessage, dataset_id: str) -> None:
     image = msg.args[0].json_value()
     metadata = msg.args[1].json_value()
 
-    extra_metadata = {
-        "dataset_id": dataset_id,
-    }
-
-    final_id = dataset_id
+    extra_metadata = {"dataset_id": dataset_id}
 
     with (
         urlopen(image) as i,
-        (IMAGES / f"{final_id}.png").open(mode="wb") as f,
+        (IMAGES / f"{dataset_id}.png").open(mode="wb") as f,
     ):
         f.write(i.read())
 
-    write_json({**metadata, **extra_metadata}, METADATA / f"{final_id}.json")
+    write_json({**metadata, **extra_metadata}, METADATA / f"{dataset_id}.json")
 
 
 def run_job(job: str) -> None:

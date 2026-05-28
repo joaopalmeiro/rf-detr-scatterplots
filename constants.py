@@ -7,6 +7,9 @@ METADATA = INPUT / "metadata"
 
 OUTPUT = Path("output")
 FINAL_DATASET = OUTPUT / "dataset"
+TRAIN = FINAL_DATASET / "train"
+VALID = FINAL_DATASET / "valid"
+TEST = FINAL_DATASET / "test"
 
 RANDOM_STATE = 42
 

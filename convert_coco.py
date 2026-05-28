@@ -1,10 +1,72 @@
+import shutil
+from pathlib import Path
+
+from gaveta.json import read_json, write_json
+from PIL import Image
 from sklearn.model_selection import train_test_split
 
-from constants import DATASETS, FINAL_DATASET, RANDOM_STATE
+from constants import DATASETS, IMAGES, METADATA, RANDOM_STATE, TEST, TRAIN, VALID
 from utils import ensure_clean_dir
 
+
+def xyxy_to_xywh(xyxy: list[float]) -> list[int]:
+    x_min, y_min, x_max, y_max = xyxy
+    return [int(x_min), int(y_min), int(x_max - x_min), int(y_max - y_min)]
+
+
+def internal_to_coco(ids: list[str], subset: Path) -> None:
+    annotations_coco = {
+        "images": [],
+        "categories": [
+            {
+                "id": 1,
+                "name": "cluster",
+            },
+        ],
+        "annotations": [],
+    }
+
+    for index, id in enumerate(ids, start=1):
+        file_name = f"{id}.png"
+
+        shutil.move(IMAGES / file_name, subset / file_name)
+
+        with Image.open(subset / file_name) as im:
+            width, height = im.size
+
+        annotations_coco["images"].append(
+            {
+                "id": index,
+                "file_name": file_name,
+                "width": width,
+                "height": height,
+            }
+        )
+
+        metadata = read_json(METADATA / f"{id}.json")
+
+        for bbox_index, bbox in enumerate(metadata["bbox"], start=1):
+            coordinates = xyxy_to_xywh(bbox)
+            area = coordinates[2] * coordinates[3]
+
+            annotations_coco["annotations"].append(
+                {
+                    "id": int(f"{index}{bbox_index}"),
+                    "image_id": index,
+                    "category_id": 1,
+                    "bbox": coordinates,
+                    "area": area,
+                    "iscrowd": 0,
+                }
+            )
+
+        write_json(annotations_coco, subset / "_annotations.coco.json")
+
+
 if __name__ == "__main__":
-    ensure_clean_dir(FINAL_DATASET)
+    ensure_clean_dir(TRAIN)
+    ensure_clean_dir(VALID)
+    ensure_clean_dir(TEST)
 
     all_ids = sorted(d.stem for d in DATASETS.glob("*.json"))
 
@@ -12,4 +74,6 @@ if __name__ == "__main__":
     train_ids, test_ids = train_test_split(all_ids, test_size=0.2, random_state=RANDOM_STATE)
     val_ids, test_ids = train_test_split(test_ids, test_size=0.5, random_state=RANDOM_STATE)
 
-    # TODO
+    internal_to_coco(train_ids, TRAIN)
+    internal_to_coco(val_ids, VALID)
+    internal_to_coco(test_ids, TEST)
