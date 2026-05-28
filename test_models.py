@@ -15,6 +15,7 @@ def evaluate_medium_model() -> None:
 
     for image in TEST.glob("*.jpg"):
         detections = model.predict(str(image), threshold=0.5)
+        logger.info("Number of predicted bounding boxes: {total}", total=len(detections.xyxy))
 
         annotated_image = box_annotator.annotate(
             scene=detections.metadata["source_image"],
