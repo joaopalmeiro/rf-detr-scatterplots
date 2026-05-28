@@ -11,6 +11,7 @@ FINAL_DATASET = OUTPUT / "dataset"
 TRAIN = FINAL_DATASET / "train"
 VALID = FINAL_DATASET / "valid"
 TEST = FINAL_DATASET / "test"
+RESULTS = OUTPUT / "results"
 
 RANDOM_STATE = 42
 

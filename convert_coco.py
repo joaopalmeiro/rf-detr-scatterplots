@@ -9,7 +9,7 @@ from constants import IMAGES, METADATA, RANDOM_STATE, TEST, TRAIN, VALID
 from utils import ensure_clean_dir, xyxy_to_xywh
 
 
-def internal_to_coco(ids: list[str], subset: Path) -> None:
+def internal_to_coco(image_ids: list[str], subset: Path) -> None:
     annotations_coco = {
         "images": [],
         "categories": [
@@ -21,10 +21,10 @@ def internal_to_coco(ids: list[str], subset: Path) -> None:
         "annotations": [],
     }
 
-    for index, id in enumerate(ids, start=1):
-        file_name = f"{id}.jpg"
+    for index, image_id in enumerate(image_ids, start=1):
+        file_name = f"{image_id}.jpg"
 
-        with Image.open(IMAGES / f"{id}.png") as im:
+        with Image.open(IMAGES / f"{image_id}.png") as im:
             width, height = im.size
             im.convert("RGB").save(subset / file_name, quality=95)
 
@@ -37,7 +37,7 @@ def internal_to_coco(ids: list[str], subset: Path) -> None:
             }
         )
 
-        metadata = read_json(METADATA / f"{id}.json")
+        metadata = read_json(METADATA / f"{image_id}.json")
 
         for bbox_index, bbox in enumerate(metadata["bbox"], start=1):
             coordinates = xyxy_to_xywh(bbox)
@@ -62,11 +62,11 @@ if __name__ == "__main__":
     ensure_clean_dir(VALID)
     ensure_clean_dir(TEST)
 
-    all_ids = sorted(d.stem for d in IMAGES.glob("*.png"))
-    logger.info("Size: {size}", size=len(all_ids))
+    image_ids = sorted(d.stem for d in IMAGES.glob("*.png"))
+    logger.info("Size: {size}", size=len(image_ids))
 
     # 80/10/10:
-    train_ids, test_ids = train_test_split(all_ids, test_size=0.2, random_state=RANDOM_STATE)
+    train_ids, test_ids = train_test_split(image_ids, test_size=0.2, random_state=RANDOM_STATE)
     val_ids, test_ids = train_test_split(test_ids, test_size=0.5, random_state=RANDOM_STATE)
 
     internal_to_coco(train_ids, TRAIN)

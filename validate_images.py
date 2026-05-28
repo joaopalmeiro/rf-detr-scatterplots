@@ -7,9 +7,6 @@ from loguru import logger
 from constants import VALID, VALIDATION
 from utils import ensure_clean_dir
 
-VALIDATION = Path("input") / "validation"
-
-
 if __name__ == "__main__":
     ensure_clean_dir(VALIDATION)
 
