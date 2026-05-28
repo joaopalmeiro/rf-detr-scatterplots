@@ -4,6 +4,7 @@ INPUT = Path("input")
 DATASETS = INPUT / "datasets"
 IMAGES = INPUT / "images"
 METADATA = INPUT / "metadata"
+VALIDATION = INPUT / "validation"
 
 OUTPUT = Path("output")
 FINAL_DATASET = OUTPUT / "dataset"

@@ -113,6 +113,7 @@
   - https://huggingface.co/docs/huggingface_hub/en/guides/buckets#delete-extraneous-files
   - https://huggingface.co/docs/huggingface_hub/en/guides/cli#hf-auth-login
     - https://huggingface.co/docs/huggingface_hub/en/quick-start#environment-variable
+- https://supervision.roboflow.com/latest/how_to/detect_small_objects/
 
 ## Next.js & Netlify Identity (auth) Tutorial
 

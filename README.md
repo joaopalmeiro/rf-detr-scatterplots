@@ -41,6 +41,10 @@ uv run python convert_coco.py
 ```
 
 ```bash
+uv run python validate_images.py
+```
+
+```bash
 uv run mypy
 ```
 
