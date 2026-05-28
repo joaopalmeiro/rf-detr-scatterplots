@@ -12,4 +12,4 @@ __pycache__/
 input/
 output/
 
-rf-detr-medium.pth
+*.pth
