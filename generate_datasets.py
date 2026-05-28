@@ -1,5 +1,6 @@
 from collections import Counter
 
+import numpy as np
 import pandas as pd
 from loguru import logger
 from sklearn.datasets import make_blobs
@@ -34,43 +35,35 @@ def generate_gaussian_blobs() -> None:
 def generate_imbalanced_gaussian_blobs() -> None:
     prefix = "imbalanced_gaussian_blobs"
 
-    imbalance_levels = {
-        "mild": [
-            [60, 30, 10],
-            [300, 150, 50],
-            [600, 300, 100],
-            [1200, 600, 200],
-        ],
-        "severe": [
-            [80, 15, 5],
-            [400, 75, 25],
-            [800, 150, 50],
-            [1600, 300, 100],
-        ],
-    }
+    imbalance_levels = [
+        {"mild": (300, 50), "severe": (300, 12)},
+        {"mild": (600, 100), "severe": (600, 25)},
+        {"mild": (1200, 200), "severe": (1200, 50)},
+    ]
 
-    for cluster_std in [0.2, 0.4, 0.6]:
-        for imbalance_label, counts in imbalance_levels.items():
-            for n_samples in counts:
-                for random_state in [0, 42]:
-                    total = sum(n_samples)
-                    n_clusters = len(n_samples)
+    for n_clusters in range(2, 7):
+        for cluster_std in [0.2, 0.4, 0.6]:
+            for imbalance_level in imbalance_levels:
+                for imbalance_label, (start, stop) in imbalance_level.items():
+                    for random_state in [0, 42]:
+                        counts = np.geomspace(start, stop, num=n_clusters, dtype=int).tolist()
+                        n_samples = sum(counts)
 
-                    coordinates, labels = make_blobs(
-                        n_samples=n_samples, cluster_std=cluster_std, random_state=random_state
-                    )
-
-                    dataset = pd.DataFrame(coordinates, columns=["x", "y"])
-                    dataset = dataset.assign(cluster=labels)
-
-                    dataset_id = (
-                        f"{prefix}+{total}+{n_clusters}+{cluster_std}+{random_state}+{imbalance_label}".replace(
-                            ".", "_"
+                        coordinates, labels = make_blobs(
+                            n_samples=counts, cluster_std=cluster_std, random_state=random_state
                         )
-                    )
-                    dataset.to_json(DATASETS / f"{dataset_id}.json", orient="records", force_ascii=False)
 
-                    logger.info("{dataset_id} generated", dataset_id=dataset_id)
+                        dataset = pd.DataFrame(coordinates, columns=["x", "y"])
+                        dataset = dataset.assign(cluster=labels)
+
+                        dataset_id = (
+                            f"{prefix}+{n_samples}+{n_clusters}+{cluster_std}+{random_state}+{imbalance_label}".replace(
+                                ".", "_"
+                            )
+                        )
+                        dataset.to_json(DATASETS / f"{dataset_id}.json", orient="records", force_ascii=False)
+
+                        logger.info("{dataset_id} generated", dataset_id=dataset_id)
 
 
 if __name__ == "__main__":
