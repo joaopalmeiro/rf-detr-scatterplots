@@ -144,6 +144,10 @@ kiro ~/Documents/kiro-rf-detr-scatterplots
 uv run hf buckets --help
 ```
 
+```bash
+open input/images
+```
+
 ## Snippets
 
 ### `src/pages/_app.jsx`

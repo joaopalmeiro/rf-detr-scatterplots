@@ -18,7 +18,7 @@ def generate_gaussian_blobs() -> None:
     for n_samples in [100, 500, 1_000, 2_000]:
         for n_clusters in range(min_n_clusters, max_n_clusters + 1):
             for cluster_std in [0.2, 0.4, 0.6]:
-                for random_state in [0, 42]:
+                for random_state in [0, 42, 1234]:
                     coordinates, labels = make_blobs(
                         n_samples=n_samples, centers=n_clusters, cluster_std=cluster_std, random_state=random_state
                     )
@@ -36,16 +36,16 @@ def generate_imbalanced_gaussian_blobs() -> None:
     prefix = "imbalanced_gaussian_blobs"
 
     imbalance_levels = [
-        {"mild": (300, 50), "severe": (300, 12)},
         {"mild": (600, 100), "severe": (600, 25)},
         {"mild": (1200, 200), "severe": (1200, 50)},
+        {"mild": (2400, 400), "severe": (2400, 100)},
     ]
 
     for n_clusters in range(2, 7):
         for cluster_std in [0.2, 0.4, 0.6]:
             for imbalance_level in imbalance_levels:
                 for imbalance_label, (start, stop) in imbalance_level.items():
-                    for random_state in [0, 42]:
+                    for random_state in [0, 42, 1234]:
                         counts = np.geomspace(start, stop, num=n_clusters, dtype=int).tolist()
                         n_samples = sum(counts)
 
