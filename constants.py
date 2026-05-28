@@ -27,3 +27,28 @@ DEFAULT_POINT_SIZE = 30
 
 # https://vega.github.io/vega-lite/docs/size.html#autosize
 DEFAULT_AUTO_SIZE = {"type": "fit", "contains": "padding"}
+
+# Source: https://github.com/vega/vega-themes/blob/v3.0.0/src/theme-dark.ts
+DARK_THEME_CONFIG = {
+    "background": "#333",
+    "view": {
+        "stroke": "#888",
+    },
+    "title": {
+        "color": "#fff",
+        "subtitleColor": "#fff",
+    },
+    "style": {
+        "guide-label": {
+            "fill": "#fff",
+        },
+        "guide-title": {
+            "fill": "#fff",
+        },
+    },
+    "axis": {
+        "domainColor": "#fff",
+        "gridColor": "#888",
+        "tickColor": "#fff",
+    },
+}

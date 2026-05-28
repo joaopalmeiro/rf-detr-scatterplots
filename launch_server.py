@@ -1,10 +1,12 @@
 import json
+from collections.abc import Callable
 from string import Template
 
 import pandas as pd
 from fasthtml.common import Div, Main, Script, fast_app, serve
 
 from constants import (
+    DARK_THEME_CONFIG,
     DATASETS,
     DEFAULT_AUTO_SIZE,
     DEFAULT_HEIGHT,
@@ -81,6 +83,73 @@ def generate_default_spec(dataset: pd.DataFrame) -> str:
     )
 
 
+def generate_dark_spec(dataset: pd.DataFrame) -> str:
+    return json.dumps(
+        {
+            "width": DEFAULT_WIDTH,
+            "height": DEFAULT_HEIGHT,
+            "padding": DEFAULT_PADDING,
+            "autosize": DEFAULT_AUTO_SIZE,
+            "data": {"values": dataset.to_dict(orient="records")},
+            "mark": {
+                "type": "point",
+                "filled": True,
+                "size": DEFAULT_POINT_SIZE,
+                "opacity": DEFAULT_OPACITY,
+            },
+            "encoding": {
+                "x": {
+                    "field": "x",
+                    "type": "quantitative",
+                    "axis": {"title": None},
+                    "scale": {"zero": False},
+                },
+                "y": {
+                    "field": "y",
+                    "type": "quantitative",
+                    "axis": {"title": None},
+                    "scale": {"zero": False},
+                },
+            },
+            "config": DARK_THEME_CONFIG,
+        },
+        ensure_ascii=False,
+    )
+
+
+def generate_x2_point_size_spec(dataset: pd.DataFrame) -> str:
+    return json.dumps(
+        {
+            "width": DEFAULT_WIDTH,
+            "height": DEFAULT_HEIGHT,
+            "padding": DEFAULT_PADDING,
+            "autosize": DEFAULT_AUTO_SIZE,
+            "data": {"values": dataset.to_dict(orient="records")},
+            "mark": {
+                "type": "point",
+                "filled": True,
+                "size": DEFAULT_POINT_SIZE * 2,
+                "opacity": DEFAULT_OPACITY,
+            },
+            "encoding": {
+                "x": {
+                    "field": "x",
+                    "type": "quantitative",
+                    "axis": {"title": None},
+                    "scale": {"zero": False},
+                },
+                "y": {
+                    "field": "y",
+                    "type": "quantitative",
+                    "axis": {"title": None},
+                    "scale": {"zero": False},
+                },
+            },
+        },
+        ensure_ascii=False,
+    )
+
+
 def compute_cluster_bounding_boxes(dataset: pd.DataFrame) -> str:
     bounding_boxes = dataset.groupby("cluster", as_index=False).agg(
         x_min=("x", "min"), x_max=("x", "max"), y_min=("y", "min"), y_max=("y", "max")
@@ -99,14 +168,20 @@ app, rt = fast_app(
     ),
 )
 
+CHART_DESIGNS: dict[str, Callable[[pd.DataFrame], str]] = {
+    "dark": generate_dark_spec,
+    "default": generate_default_spec,
+    "x2_point_size": generate_x2_point_size_spec,
+}
 
-@rt("/{dataset_id}")
-def home(dataset_id: str):
+
+@rt("/{dataset_id}/{chart_design}")
+def home(dataset_id: str, chart_design: str):
     dataset = pd.read_json(DATASETS / f"{dataset_id}.json")
 
     bounding_boxes = compute_cluster_bounding_boxes(dataset)
 
-    vl_spec = generate_default_spec(dataset)
+    vl_spec = CHART_DESIGNS[chart_design](dataset)
 
     return Main(
         Div(id="chart"),

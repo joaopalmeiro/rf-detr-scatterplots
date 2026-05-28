@@ -18,36 +18,41 @@ def init_browser() -> None:
     thread_local.page = thread_local.browser.new_page()
 
 
-def handle_msg(msg: ConsoleMessage, dataset_id: str) -> None:
+def handle_msg(msg: ConsoleMessage, dataset_id: str, chart_design: str) -> None:
     image = msg.args[0].json_value()
     metadata = msg.args[1].json_value()
 
-    extra_metadata = {"dataset_id": dataset_id}
+    extra_metadata = {"dataset_id": dataset_id, "chart_design": chart_design}
+
+    final_id = f"{dataset_id}+{chart_design}"
 
     with (
         urlopen(image) as i,
-        (IMAGES / f"{dataset_id}.png").open(mode="wb") as f,
+        (IMAGES / f"{final_id}.png").open(mode="wb") as f,
     ):
         f.write(i.read())
 
-    write_json({**metadata, **extra_metadata}, METADATA / f"{dataset_id}.json")
+    write_json({**metadata, **extra_metadata}, METADATA / f"{final_id}.json")
 
 
-def run_job(job: str) -> None:
-    url = f"http://localhost:5001/{job}"
+def run_job(job: tuple[str, str]) -> None:
+    dataset_id, chart_design = job
+    url = f"http://localhost:5001/{dataset_id}/{chart_design}"
 
     with thread_local.page.expect_console_message() as msg_info:
         thread_local.page.goto(url)
         msg = msg_info.value
 
-    handle_msg(msg, job)
+    handle_msg(msg, dataset_id, chart_design)
 
 
 if __name__ == "__main__":
     ensure_clean_dir(IMAGES)
     ensure_clean_dir(METADATA)
 
-    all_jobs = [d.stem for d in DATASETS.glob("*.json")]
+    all_jobs: list[tuple[str, str]] = [
+        (d.stem, chart_design) for d in DATASETS.glob("*.json") for chart_design in ["dark", "default", "x2_point_size"]
+    ]
 
     with ThreadPoolExecutor(max_workers=5, initializer=init_browser) as executor:
         futures = {executor.submit(run_job, job): job for job in all_jobs}
