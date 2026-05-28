@@ -24,9 +24,9 @@ def internal_to_coco(ids: list[str], subset: Path) -> None:
     for index, id in enumerate(ids, start=1):
         file_name = f"{id}.jpg"
 
-        with Image.open(subset / f"{id}.png") as im:
+        with Image.open(IMAGES / f"{id}.png") as im:
             width, height = im.size
-            im.convert("RGB").save(subset / file_name)
+            im.convert("RGB").save(subset / file_name, quality=95)
 
         annotations_coco["images"].append(
             {
