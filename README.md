@@ -45,6 +45,10 @@ uv run python validate_images.py
 ```
 
 ```bash
+uv run python test_models.py
+```
+
+```bash
 uv run mypy
 ```
 

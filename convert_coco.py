@@ -1,4 +1,3 @@
-import shutil
 from pathlib import Path
 
 from gaveta.json import read_json, write_json
@@ -23,12 +22,11 @@ def internal_to_coco(ids: list[str], subset: Path) -> None:
     }
 
     for index, id in enumerate(ids, start=1):
-        file_name = f"{id}.png"
+        file_name = f"{id}.jpg"
 
-        shutil.move(IMAGES / file_name, subset / file_name)
-
-        with Image.open(subset / file_name) as im:
+        with Image.open(subset / f"{id}.png") as im:
             width, height = im.size
+            im.convert("RGB").save(subset / file_name)
 
         annotations_coco["images"].append(
             {

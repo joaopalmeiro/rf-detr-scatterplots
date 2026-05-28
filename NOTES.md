@@ -130,6 +130,7 @@
 - [#4 - Signing Up & Logging In](https://youtu.be/klD6RTbz5ww).
 - [#5 - Logging Out](https://youtu.be/Xfr7LIef-q0):
   - Return a function in `useEffect` for cleanup purposes. [React performs the cleanup when the component unmounts](https://reactjs.org/docs/hooks-effect.html#example-using-hooks-1).
+- `shutil.move(IMAGES / file_name, subset / file_name)`
 
 ## Commands
 

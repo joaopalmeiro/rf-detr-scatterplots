@@ -12,7 +12,7 @@ dependencies = [
     "pillow==11.2.1",
     "playwright==1.53.0",
     "python-fasthtml==0.14.1",
+    "rfdetr==1.6.5.post2",
     "ruff==0.15.11",
     "scikit-learn==1.6.1",
-    "supervision==0.28.0",
 ]
