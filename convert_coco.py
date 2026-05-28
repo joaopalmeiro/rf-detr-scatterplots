@@ -6,12 +6,7 @@ from PIL import Image
 from sklearn.model_selection import train_test_split
 
 from constants import DATASETS, IMAGES, METADATA, RANDOM_STATE, TEST, TRAIN, VALID
-from utils import ensure_clean_dir
-
-
-def xyxy_to_xywh(xyxy: list[float]) -> list[int]:
-    x_min, y_min, x_max, y_max = xyxy
-    return [int(x_min), int(y_min), int(x_max - x_min), int(y_max - y_min)]
+from utils import ensure_clean_dir, xyxy_to_xywh
 
 
 def internal_to_coco(ids: list[str], subset: Path) -> None:
