@@ -15,4 +15,8 @@ model.train(
     batch_size=16,
     grad_accum_steps=1,
     output_dir=f"/output/{train_run}",
+    early_stopping=True,
+    early_stopping_patience=5,
+    early_stopping_min_delta=0.005,
+    skip_best_epochs=3,
 )

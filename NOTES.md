@@ -143,6 +143,7 @@
 - `nvidia_smi = shutil.which("nvidia-smi")`
 - https://pytorch.org/get-started/previous-versions/
 - https://docs.astral.sh/uv/reference/environment/#uv_torch_backend
+- https://rfdetr.roboflow.com/latest/learn/train/training-parameters/#early-stopping-parameters
 
 ## Commands
 
