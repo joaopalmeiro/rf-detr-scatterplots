@@ -2,10 +2,11 @@ import shutil
 from pathlib import Path
 
 from gaveta.json import read_json, write_json
+from loguru import logger
 from PIL import Image
 from sklearn.model_selection import train_test_split
 
-from constants import DATASETS, IMAGES, METADATA, RANDOM_STATE, TEST, TRAIN, VALID
+from constants import IMAGES, METADATA, RANDOM_STATE, TEST, TRAIN, VALID
 from utils import ensure_clean_dir, xyxy_to_xywh
 
 
@@ -63,7 +64,8 @@ if __name__ == "__main__":
     ensure_clean_dir(VALID)
     ensure_clean_dir(TEST)
 
-    all_ids = sorted(d.stem for d in DATASETS.glob("*.json"))
+    all_ids = sorted(d.stem for d in IMAGES.glob("*.png"))
+    logger.info("Size: {size}", size=len(all_ids))
 
     # 80/10/10:
     train_ids, test_ids = train_test_split(all_ids, test_size=0.2, random_state=RANDOM_STATE)
