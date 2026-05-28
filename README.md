@@ -71,3 +71,7 @@ HF_TOKEN="op://Development/Hugging Face/HF_TOKEN" op run -- uv run hf buckets sy
 ```bash
 HF_TOKEN="op://Development/Hugging Face/HF_TOKEN" op run -- uv run hf buckets create checkpoints
 ```
+
+```bash
+HF_TOKEN="op://Development/Hugging Face/HF_TOKEN" op run -- uv run python trigger_train.py
+```
