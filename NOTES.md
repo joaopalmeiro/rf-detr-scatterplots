@@ -107,6 +107,12 @@
   - https://www.conductor.build/cloud
 - https://docs.python.org/3/library/shutil.html#shutil.move
 - https://github.com/roboflow/supervision
+- https://huggingface.co/docs/huggingface_hub/en/guides/buckets
+  - https://huggingface.co/docs/huggingface_hub/en/guides/buckets#upload-a-directory-with-the-cli
+  - https://huggingface.co/docs/huggingface_hub/en/guides/buckets#sync-directories
+  - https://huggingface.co/docs/huggingface_hub/en/guides/buckets#delete-extraneous-files
+  - https://huggingface.co/docs/huggingface_hub/en/guides/cli#hf-auth-login
+    - https://huggingface.co/docs/huggingface_hub/en/quick-start#environment-variable
 
 ## Next.js & Netlify Identity (auth) Tutorial
 
@@ -132,6 +138,10 @@ mkdir -p ~/Documents/kiro-rf-detr-scatterplots && rsync -a --delete --exclude={'
 
 ```bash
 kiro ~/Documents/kiro-rf-detr-scatterplots
+```
+
+```bash
+uv run hf buckets --help
 ```
 
 ## Snippets

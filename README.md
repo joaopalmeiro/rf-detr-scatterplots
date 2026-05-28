@@ -51,3 +51,11 @@ uv run ruff format
 ```bash
 uv run ruff check --fix
 ```
+
+```bash
+HF_TOKEN="op://Development/Hugging Face/HF_TOKEN" op run -- uv run hf buckets create scatterplots
+```
+
+```bash
+HF_TOKEN="op://Development/Hugging Face/HF_TOKEN" op run -- uv run hf buckets sync ./output/dataset hf://buckets/joaompalmeiro/scatterplots --delete
+```
