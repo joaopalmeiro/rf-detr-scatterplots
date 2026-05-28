@@ -64,4 +64,4 @@ if __name__ == "__main__":
                 future.result()
                 logger.info("{job} generated", job=job)
             except Exception as e:
-                logger.error(e)
+                logger.error("{job}: {e}", job=job, e=e)
