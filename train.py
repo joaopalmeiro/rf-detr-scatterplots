@@ -1,8 +1,11 @@
 import os
+import subprocess
 
 from rfdetr import RFDETRMedium
 
 train_run = os.environ.get("TRAIN_RUN", "tmp")
+
+print(subprocess.run(["nvidia-smi"], capture_output=True, text=True, check=True).stdout)
 
 model = RFDETRMedium()
 

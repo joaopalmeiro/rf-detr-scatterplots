@@ -138,6 +138,11 @@
 - https://huggingface.co/Roboflow/rf-detr-medium
 - https://github.com/roboflow/rf-detr/blob/1.6.5.post2/src/rfdetr/assets/model_weights.py#L227
 - https://huggingface.co/docs/huggingface_hub/en/guides/jobs#uv-scripts-experimental
+- https://github.com/roboflow/rf-detr/blob/1.6.5.post2/pyproject.toml#L37-L79
+- "RuntimeError: The NVIDIA driver on your system is too old (found version 12090). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver."
+- `nvidia_smi = shutil.which("nvidia-smi")`
+- https://pytorch.org/get-started/previous-versions/
+- https://docs.astral.sh/uv/reference/environment/#uv_torch_backend
 
 ## Commands
 
