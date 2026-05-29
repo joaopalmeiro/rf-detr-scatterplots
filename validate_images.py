@@ -4,15 +4,15 @@ import cv2
 import supervision as sv
 from loguru import logger
 
-from constants import VALID, VALIDATION
+from constants import TEST, VALIDATION
 from utils import ensure_clean_dir
 
 if __name__ == "__main__":
     ensure_clean_dir(VALIDATION)
 
     dataset = sv.DetectionDataset.from_coco(
-        images_directory_path=str(VALID),
-        annotations_path=str(VALID / "_annotations.coco.json"),
+        images_directory_path=str(TEST),
+        annotations_path=str(TEST / "_annotations.coco.json"),
     )
 
     box_annotator = sv.BoxAnnotator()

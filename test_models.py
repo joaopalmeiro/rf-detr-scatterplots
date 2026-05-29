@@ -66,9 +66,9 @@ def evaluate_medium_trained_model() -> None:
             scene=detections.metadata["source_image"],
             detections=detections,
         )
+        annotated_image = sv.LabelAnnotator().annotate(annotated_image, detections, labels)
 
         Image.fromarray(annotated_image).save(RESULTS / "medium_trained" / image.name)
-        annotated_image = sv.LabelAnnotator().annotate(annotated_image, detections, labels)
 
         logger.info("{image} evaluated", image=image.name)
 
