@@ -4,6 +4,11 @@
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
 
+Experiments with the [RF-DETR](https://github.com/roboflow/rf-detr) architecture and synthetic data for detecting clusters in scatterplot images.
+
+- [Dataset](https://huggingface.co/buckets/joaompalmeiro/scatterplots)
+- [Checkpoints](https://huggingface.co/buckets/joaompalmeiro/checkpoints)
+
 ## Development
 
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/) (if necessary):
