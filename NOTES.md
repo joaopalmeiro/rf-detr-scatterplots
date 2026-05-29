@@ -115,6 +115,11 @@
   - https://huggingface.co/docs/huggingface_hub/en/guides/cli#hf-auth-login
     - https://huggingface.co/docs/huggingface_hub/en/quick-start#environment-variable
 - https://supervision.roboflow.com/latest/how_to/detect_small_objects/
+- https://github.com/SWE-agent/mini-swe-agent
+- https://deepswe.datacurve.ai/
+  - https://deepswe.datacurve.ai/blog#evaluation-harness
+  - https://github.com/SWE-agent/mini-swe-agent/blob/adfe20233d456104c38c3129161b54f0fd39f2c7/src/minisweagent/config/mini.yaml#L11-L19
+- https://cursor.com/cursorbench
 
 ## Next.js & Netlify Identity (auth) Tutorial
 
